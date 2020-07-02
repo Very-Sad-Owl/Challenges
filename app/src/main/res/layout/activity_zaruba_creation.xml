@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    tools:context=".ZarubaCreation">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textViewShortTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/zarubaTitle"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/zarubaTitle"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/description"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/description"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textViewPartis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/partis"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editPartis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/partis"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textViewWin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/winReward"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editWin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/winReward"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textViewLoose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/looseReward"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editLoose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/looseReward"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textViewConditions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/conditions"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editConditions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/conditions"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/acceptButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="saveZaruba"
+                android:text="Button" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

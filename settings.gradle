@@ -1,0 +1,3 @@
+rootProject.name='PidorsBizzareAdventure'
+include ':app'
+include ':mylibrary'

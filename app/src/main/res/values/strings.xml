@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PidorsBizarreAdventure</string>
+    <string name="helloString">Pidors Bizarre Adventure</string>
+    <string name="zarubaTitle">Title</string>
+    <string name="description">Description</string>
+    <string name="partis">Participators</string>
+    <string name="winReward">Winner Reward</string>
+    <string name="looseReward">Looser Punishment</string>'
+    <string name="conditions">Conditions</string>
+    <string name="logoDescr">Bizarre logo</string>
+    <string name="noTitle">Untitled</string>
+    <string name="emptyField">none</string>
+    <string name="failedChallenge">What challenge have you failed?</string>
+    <string name="violation">So, what have you done?</string>
+    <string name="admit">Admit</string>
+    <string name="logo">logo</string>
+    <string name="challengeicon">Challenge Icon</string>
+</resources>
