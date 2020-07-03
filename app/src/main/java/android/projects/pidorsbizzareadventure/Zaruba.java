@@ -1,5 +1,9 @@
 package android.projects.pidorsbizzareadventure;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,7 +11,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity(tableName = "challenge")
 public class Zaruba implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String title;
     private List<Participator> participators;
     private String description;
@@ -16,7 +23,7 @@ public class Zaruba implements Serializable {
     private List<String> conditions;
     private boolean isOnRun;
 
-
+    @Ignore
     public Zaruba(String title, String participators, String description,
                   String winnerReward, String looserReward, String conditions) {
         this.title = !title.isEmpty() ? title : "Untitled";
@@ -34,6 +41,18 @@ public class Zaruba implements Serializable {
             this.conditions = new ArrayList<String>
                     (Arrays.asList(conditions.replace(", ", ",").split(",")));
         }
+    }
+
+    public Zaruba(int id, String title, List<Participator> participators, String description,
+                  String winnerReward, String looserReward, List<String> conditions, boolean isOnRun) {
+        this.id = id;
+        this.title = title;
+        this.participators = participators;
+        this.description = description;
+        this.winnerReward = winnerReward;
+        this.looserReward = looserReward;
+        this.conditions = conditions;
+        this.isOnRun = isOnRun;
     }
 
     public String getTitle() {
@@ -76,15 +95,25 @@ public class Zaruba implements Serializable {
         this.looserReward = looserReward;
     }
 
-    public List<String> getCondotions() {
+    public List<String> getConditions() {
         return conditions;
     }
 
-    public void setCondotions(List<String> condotions) {
-        this.conditions = condotions;
+    public void setConditions(List<String> conditions) {
+        this.conditions = conditions;
     }
 
-//    @Override
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+
+    //    @Override
 //    public String toString() {
 //        return "Zaruba{" +
 //                "title='" + title + '\'' +
