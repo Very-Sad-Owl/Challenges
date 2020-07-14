@@ -3,7 +3,7 @@
     <string name="helloString">Pidors Bizarre Adventure</string>
     <string name="zarubaTitle">Title</string>
     <string name="description">Description</string>
-    <string name="partis">Participators</string>
+    <string name="partis">Your nickname</string>
     <string name="winReward">Winner Reward</string>
     <string name="looseReward">Looser Punishment</string>'
     <string name="conditions">Conditions</string>
@@ -15,4 +15,19 @@
     <string name="admit">Admit</string>
     <string name="logo">logo</string>
     <string name="challengeicon">Challenge Icon</string>
+    <string name="addConditions">Add Challenge Conditions</string>
+    <string name="penaltyPoints">Add all needed challenge conditions and set penalty points to them.</string>
+    <string name="next">Next</string>
+    <string name="add">Add</string>
+    <string name="type_condition_here">Type condition here</string>
+    <string name="type_new_conditions_here">Type new conditions here</string>
+    <string name="finish">Finish</string>
+    <string name="edit">Edit</string>
+    <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
+    <string name="defisSeparator">-</string>
+    <string name="password">Password</string>
+    <string name="sing_in">Sing In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
 </resources>

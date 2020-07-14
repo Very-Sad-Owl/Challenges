@@ -5,12 +5,13 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toTopOf="@+id/addChallenge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,60 +23,51 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textViewWhatChallenge"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
+                android:text="@string/failedChallenge"
+                android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/textViewWhatChallenge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/failedChallenge"
-                    android:textSize="24sp" />
+            <Spinner
+                android:id="@+id/spinnerChallenges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:textSize="16sp" />
 
-                <Spinner
-                    android:id="@+id/spinnerChallenges"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:textSize="16sp" />
+            <TextView
+                android:id="@+id/textViewWhatCondition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/violation"
+                android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/textViewWhatCondition"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/violation"
-                    android:textSize="24sp" />
+            <Spinner
+                android:id="@+id/spinnerConditions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:textSize="16sp" />
 
-                <Spinner
-                    android:id="@+id/spinnerConditions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/buttonAdmit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/admit"
-                    android:textSize="24sp" />
-
-            </LinearLayout>
+            <Button
+                android:id="@+id/buttonAdmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="admit"
+                android:text="@string/admit"
+                android:textSize="24sp" />
 
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/addChallenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:clickable="true"
-        android:focusable="true"
+        android:text="@string/add"
         android:onClick="createZaruba"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
-    tools:context=".ZarubasList">
+    tools:context=".activities.ZarubasList">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ZarubasList">
+    tools:context=".activities.ZarubasList">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/challengeList"

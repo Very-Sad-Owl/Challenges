@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "720941773322",
-    "firebase_url": "https://challenges-b1a6a.firebaseio.com",
-    "project_id": "challenges-b1a6a",
-    "storage_bucket": "challenges-b1a6a.appspot.com"
+    "project_number": "874956609031",
+    "firebase_url": "https://bizarrechallenge.firebaseio.com",
+    "project_id": "bizarrechallenge",
+    "storage_bucket": "bizarrechallenge.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:720941773322:android:1bfb5a43f60750cd89e5f3",
+        "mobilesdk_app_id": "1:874956609031:android:a9895f32d972655f2cfca2",
         "android_client_info": {
           "package_name": "android.projects.pidorsbizzareadventure"
         }
       },
       "oauth_client": [
         {
-          "client_id": "720941773322-676eel9gti211dfn9satvhf9cuhjht73.apps.googleusercontent.com",
+          "client_id": "874956609031-l9gs58uq7tad818qiveifh0ort0g7ftv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "android.projects.pidorsbizzareadventure",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "720941773322-2ji0j3lrteapr1fi6s3vrblpfjg70abs.apps.googleusercontent.com",
+          "client_id": "874956609031-ihbb9i71fqta99ibo7gojt72cq9mnlpb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAgN904VkzfKfF8uNAnNPpWH71ESFYmUvA"
+          "current_key": "AIzaSyCXysvWI9DdORRoE3FTIqVfAwd0sHwfnM0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "720941773322-2ji0j3lrteapr1fi6s3vrblpfjg70abs.apps.googleusercontent.com",
+              "client_id": "874956609031-ihbb9i71fqta99ibo7gojt72cq9mnlpb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

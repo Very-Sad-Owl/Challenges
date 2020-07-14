@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="16dp"
-    tools:context=".ZarubaCreation">
+    tools:context=".activities.ZarubaCreation">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -94,27 +94,12 @@
                 android:hint="@string/looseReward"
                 android:inputType="textPersonName" />
 
-            <TextView
-                android:id="@+id/textViewConditions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/conditions"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/editConditions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/conditions"
-                android:inputType="textPersonName" />
-
             <Button
                 android:id="@+id/acceptButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="saveZaruba"
-                android:text="Button" />
+                android:text="@string/next" />
 
         </LinearLayout>
     </ScrollView>

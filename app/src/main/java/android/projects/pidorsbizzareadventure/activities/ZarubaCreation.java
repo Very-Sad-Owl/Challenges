@@ -1,15 +1,19 @@
-package android.projects.pidorsbizzareadventure;
+package android.projects.pidorsbizzareadventure.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.projects.pidorsbizzareadventure.R;
+import android.projects.pidorsbizzareadventure.pojo.Participator;
+import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+import static android.projects.pidorsbizzareadventure.pojo.FBConstants.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ZarubaCreation extends AppCompatActivity {
@@ -23,33 +27,33 @@ public class ZarubaCreation extends AppCompatActivity {
 
     public void saveZaruba(View view) {
         Map<String, String> values = collectValues();
+        List<Participator> partis = new ArrayList<>();
+        partis.add(new Participator(values.get("nick"), USER_UID));
 
-        if(checkInputValidation(values)) {
-            Zaruba newZaruba = new Zaruba(values.get("title"), values.get("participators"),
-                    values.get("description"), values.get("winReward"), values.get("looseReward"),
-                    values.get("conditions"));
-            Intent toList = new Intent(this, ZarubasList.class);
-            toList.putExtra("zaruba", newZaruba);
-            startActivity(toList);
-        } else {
-            Toast.makeText(this, "Fill all required fields", Toast.LENGTH_SHORT).show();
-        }
+        Zaruba newZaruba = new Zaruba(
+                null,
+                values.get("title"),
+                partis,
+                values.get("description"),
+                values.get("winReward"),
+                values.get("looseReward"),
+                null,
+                USER_UID);
+        Intent next = new Intent(this, ConditionsCreation.class);
+        next.putExtra("zaruba", newZaruba);
+        startActivity(next);
     }
 
     private Map<String, String> collectValues(){
         Map<String, String> values = new HashMap<>();
         values.put("title", ((TextView)findViewById(R.id.editName)).getText().toString());
-        values.put("participators", ((TextView)findViewById(R.id.editPartis)).getText().toString());
         values.put("description", ((TextView)findViewById(R.id.editDescription)).getText().toString());
+        values.put("nick", ((TextView)findViewById(R.id.textViewPartis)).getText().toString());
         values.put("winReward", ((TextView)findViewById(R.id.editWin)).getText().toString());
         values.put("looseReward", ((TextView)findViewById(R.id.editLoose)).getText().toString());
-        values.put("conditions", ((TextView)findViewById(R.id.editConditions)).getText().toString());
 
         return values;
     }
 
-    private boolean checkInputValidation(Map<String, String> values){
-        return !values.get("participators").isEmpty();
-    }
 
 }

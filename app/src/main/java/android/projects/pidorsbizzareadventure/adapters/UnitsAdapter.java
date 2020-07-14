@@ -1,9 +1,15 @@
-package android.projects.pidorsbizzareadventure;
+package android.projects.pidorsbizzareadventure.adapters;
 
+import android.content.Intent;
+import android.projects.pidorsbizzareadventure.R;
+import android.projects.pidorsbizzareadventure.pojo.Zaruba;
+import android.projects.pidorsbizzareadventure.activities.ZarubaInfo;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,15 +44,29 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitsViewHol
         return list.size();
     }
 
-    static class UnitsViewHolder extends RecyclerView.ViewHolder {
+
+
+    static class UnitsViewHolder extends RecyclerView.ViewHolder  {
 
         private TextView title;
         private TextView description;
 
-        public UnitsViewHolder(@NonNull View itemView) {
+        public UnitsViewHolder(@NonNull final View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textViewShortTitle);
             description = itemView.findViewById(R.id.textViewShortDescription);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                    Log.i("click", "clicked");
+                    int position = getAdapterPosition();
+                    Intent next = new Intent(itemView.getContext(), ZarubaInfo.class);
+                    next.putExtra("pos", position);
+                    v.getContext().startActivity(next);
+                }
+            });
         }
     }
 }

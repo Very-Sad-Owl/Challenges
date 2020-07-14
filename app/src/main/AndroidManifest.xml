@@ -9,18 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChallengeNoteUnit"/>
-        <activity android:name=".ZarubasList" />
-        <activity android:name=".ZarubaCreation" />
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".pojo.FindUsers" />
+        <activity android:name=".activities.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activities.ConditionsCreation" />
+        <activity
+            android:name=".activities.ZarubaInfo"
+            android:parentActivityName=".activities.ZarubasList"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.ZarubasList" />
+        <activity android:name=".activities.ZarubaCreation" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 
