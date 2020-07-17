@@ -10,7 +10,7 @@ import android.projects.pidorsbizzareadventure.R;
 import android.projects.pidorsbizzareadventure.adapters.ConditionsAdapter;
 import android.projects.pidorsbizzareadventure.pojo.ChallengesContainer;
 import android.projects.pidorsbizzareadventure.pojo.Condition;
-import android.projects.pidorsbizzareadventure.pojo.FBConstants;
+import android.projects.pidorsbizzareadventure.storage.firebase.FBConstants;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.view.View;
 import android.widget.EditText;

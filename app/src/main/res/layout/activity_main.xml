@@ -5,7 +5,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".ui.welcome.MainActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -23,41 +23,48 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textViewWhatChallenge"
+            <FrameLayout
+                android:id="@+id/fragment_admit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/failedChallenge"
-                android:textSize="24sp" />
+                android:layout_height="wrap_content">
 
-            <Spinner
-                android:id="@+id/spinnerChallenges"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:textSize="16sp" />
+            </FrameLayout>
 
-            <TextView
-                android:id="@+id/textViewWhatCondition"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/violation"
-                android:textSize="24sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/textViewWhatChallenge"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/failedChallenge"-->
+<!--                android:textSize="24sp" />-->
 
-            <Spinner
-                android:id="@+id/spinnerConditions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:textSize="16sp" />
+<!--            <Spinner-->
+<!--                android:id="@+id/spinnerChallenges"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:textSize="16sp" />-->
 
-            <Button
-                android:id="@+id/buttonAdmit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="admit"
-                android:text="@string/admit"
-                android:textSize="24sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/textViewWhatCondition"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/violation"-->
+<!--                android:textSize="24sp" />-->
+
+<!--            <Spinner-->
+<!--                android:id="@+id/spinnerConditions"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:textSize="16sp" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/buttonAdmit"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:onClick="admit"-->
+<!--                android:text="@string/admit"-->
+<!--                android:textSize="24sp" />-->
 
         </LinearLayout>
     </ScrollView>
@@ -67,12 +74,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/add"
-        android:onClick="createZaruba"
         android:layout_margin="10dp"
+        android:text="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_menu_add" />
+
+    <FrameLayout
+        android:id="@+id/fragment_join"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/addChallenge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView"
+        app:layout_constraintVertical_bias="0.0">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

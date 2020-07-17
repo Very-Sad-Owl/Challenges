@@ -5,17 +5,13 @@ import android.os.Bundle;
 import android.projects.pidorsbizzareadventure.R;
 import android.projects.pidorsbizzareadventure.adapters.ConditionsAdapter;
 import android.projects.pidorsbizzareadventure.pojo.ChallengesContainer;
-import android.projects.pidorsbizzareadventure.pojo.FirebaseHelper;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
@@ -29,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import static android.projects.pidorsbizzareadventure.pojo.FBConstants.*;
+import static android.projects.pidorsbizzareadventure.storage.firebase.FBConstants.*;
 
 public class ZarubaInfo extends AppCompatActivity {
 
@@ -81,10 +77,10 @@ public class ZarubaInfo extends AppCompatActivity {
         rewardEdit = findViewById(R.id.editTextReward);
         punishmentEdit = findViewById(R.id.editTextPunishment);
 
-        titleEdit.addTextChangedListener(new MultipleTextWatcher(titleEdit));
-        descriptionEdit.addTextChangedListener(new MultipleTextWatcher(descriptionEdit));
-        rewardEdit.addTextChangedListener(new MultipleTextWatcher(rewardEdit));
-        punishmentEdit.addTextChangedListener(new MultipleTextWatcher(punishmentEdit));
+//        titleEdit.addTextChangedListener(new MultipleTextWatcher(titleEdit));
+//        descriptionEdit.addTextChangedListener(new MultipleTextWatcher(descriptionEdit));
+//        rewardEdit.addTextChangedListener(new MultipleTextWatcher(rewardEdit));
+//        punishmentEdit.addTextChangedListener(new MultipleTextWatcher(punishmentEdit));
 
         switcher = (ViewSwitcher) findViewById(R.id.switcher);
 
@@ -219,20 +215,20 @@ public class ZarubaInfo extends AppCompatActivity {
         }
     }
 
-    private class MultipleTextWatcher implements TextWatcher {
-
-        private View view;
-
-        private MultipleTextWatcher(View view) {
-            this.view = view;
-        }
-
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-        public void afterTextChanged(Editable editable) {
-            modified.add(view);
-        }
-    }
+//    private class MultipleTextWatcher implements TextWatcher {
+//
+//        private View view;
+//
+//        private MultipleTextWatcher(View view) {
+//            this.view = view;
+//        }
+//
+//        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+//        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+//        public void afterTextChanged(Editable editable) {
+//            modified.add(view);
+//        }
+//    }
 
     public static void updateData(Zaruba obj){
         ref.child(CHALLENGE_PATH).child(obj.getUid()).setValue(obj);

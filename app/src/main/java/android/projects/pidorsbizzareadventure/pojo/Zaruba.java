@@ -26,6 +26,11 @@ public class Zaruba implements Serializable {
         conditions = new ArrayList<>();
     }
 
+    public Zaruba(Zaruba zaruba){
+        this(zaruba.uid, zaruba.title, zaruba.participators, zaruba.description,
+                zaruba.reward, zaruba.punishment, zaruba.conditions, zaruba.host);
+    }
+
 //    public Zaruba(String title, String description, Participator participator,
 //                  String reward, String punishment, List<Condition> conditions) {
 //        this.title = !title.isEmpty() ? title : "Untitled";

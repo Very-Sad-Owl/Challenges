@@ -9,7 +9,7 @@ import android.projects.pidorsbizzareadventure.pojo.Participator;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.view.View;
 import android.widget.TextView;
-import static android.projects.pidorsbizzareadventure.pojo.FBConstants.*;
+import static android.projects.pidorsbizzareadventure.storage.firebase.FBConstants.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

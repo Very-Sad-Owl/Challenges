@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.projects.pidorsbizzareadventure.R;
-import android.projects.pidorsbizzareadventure.pojo.FBConstants;
-import android.projects.pidorsbizzareadventure.pojo.Zaruba;
+import android.projects.pidorsbizzareadventure.ui.welcome.MainActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static android.projects.pidorsbizzareadventure.pojo.FBConstants.*;
+import static android.projects.pidorsbizzareadventure.storage.firebase.FBConstants.*;
 
 public class Login extends AppCompatActivity {
 
