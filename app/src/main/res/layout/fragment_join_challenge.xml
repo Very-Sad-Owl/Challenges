@@ -3,20 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".ui.welcome.joinFragment.JoinChallenge">
 
-    <EditText
-        android:id="@+id/editTextChallengeUIDInput"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Paste challenge ID here"
-        android:inputType="textPersonName" />
+        android:gravity="center"
+        android:text="@string/join_existing" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editTextChallengeUIDInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Paste challenge ID here"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/buttonJoinChallenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/join" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/create_own" />
 
     <Button
-        android:id="@+id/buttonJoinChallenge"
-        android:layout_width="wrap_content"
+        android:id="@+id/button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/join" />
+        android:text="@string/create_new" />
+
 </LinearLayout>

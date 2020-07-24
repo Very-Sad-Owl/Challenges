@@ -12,6 +12,7 @@ import android.projects.pidorsbizzareadventure.pojo.ChallengesContainer;
 import android.projects.pidorsbizzareadventure.pojo.Condition;
 import android.projects.pidorsbizzareadventure.storage.firebase.FBConstants;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
+import android.projects.pidorsbizzareadventure.ui.сhallengesList.ZarubasList;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.NumberPicker;
@@ -47,7 +48,7 @@ public class ConditionsCreation extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         conditions = findViewById(R.id.conditionsList);
         conditions.setLayoutManager(manager);
-        adapter = new ConditionsAdapter(con);
+        //adapter = new ConditionsAdapter(con);
         conditions.setAdapter(adapter);
 
         Intent fromCreation = getIntent();

@@ -3,8 +3,10 @@ package android.projects.pidorsbizzareadventure.storage.local;
 import android.projects.pidorsbizzareadventure.pojo.Condition;
 import android.projects.pidorsbizzareadventure.pojo.Participator;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
+import android.projects.pidorsbizzareadventure.storage.firebase.FBConstants;
 import android.projects.pidorsbizzareadventure.storage.firebase.FirebaseHelper;
 import android.projects.pidorsbizzareadventure.storage.firebase.ReadingCallback;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,13 +46,29 @@ public class ChallengesStorage {
     }
 
     public void findChallengeByUid(String uid, Zaruba found, final GettingCallback callback){
-        //Zaruba found = new Zaruba();
         FirebaseHelper.ChallengesInteraction.searchByUid(uid, found, new ReadingCallback() {
             @Override
             public void onSuccess() {
                 callback.onSuccess();
             }
         });
-        //return found;
     }
+
+    public void addData(Zaruba zaruba){
+        Log.i("cs", zaruba.toString());
+        FirebaseHelper.ChallengesInteraction.uploadChallenge(zaruba);
+    }
+
+    public void updateChallenge(Zaruba obj){
+        FirebaseHelper.ChallengesInteraction.updateChallenge(obj);
+    }
+
+//    public void getData(List<Zaruba> list, GettingCallback callback){
+//        if(challenges == null){
+//            loadData(callback);
+//        }
+//        Log.i("fromget", challenges.toString());
+//        list = challenges;
+//    }
+
 }

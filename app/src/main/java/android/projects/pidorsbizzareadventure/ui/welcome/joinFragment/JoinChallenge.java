@@ -8,27 +8,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import android.projects.pidorsbizzareadventure.R;
-import android.projects.pidorsbizzareadventure.activities.ZarubaInfo;
+import android.projects.pidorsbizzareadventure.ui.info.ZarubaInfo;
 import android.projects.pidorsbizzareadventure.common.BaseFragment;
-import android.projects.pidorsbizzareadventure.pojo.ChallengesContainer;
-import android.projects.pidorsbizzareadventure.pojo.Participator;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
-import android.projects.pidorsbizzareadventure.ui.welcome.admitFragment.WelcomePresenter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import static android.projects.pidorsbizzareadventure.storage.firebase.FBConstants.*;
 
 
 public class JoinChallenge extends BaseFragment<JoinPresenter> implements JoinView{
@@ -85,5 +74,20 @@ public class JoinChallenge extends BaseFragment<JoinPresenter> implements JoinVi
         Intent openInfo = new Intent(getContext(), ZarubaInfo.class);
         openInfo.putExtra("currentChallenge", zaruba);
         startActivity(openInfo);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showError() {
+
     }
 }

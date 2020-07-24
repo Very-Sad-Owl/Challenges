@@ -24,50 +24,47 @@ public class WelcomePresenter extends BasePresenter {
         this.storage = storage;
     }
 
-    void findCurrentConditions(int pos) {
-
-    }
-
     void getChallenges(){
-//        final List<Zaruba> current = new ArrayList<>();
+
+//        if(storage.getChallenges() != null){
+//            List<Zaruba> current = storage.getChallenges();
+//            List<String> titles = new ArrayList<>();
 //
-//        FirebaseHelper.ChallengesInteraction.getAllCurrent(current, new ReadingCallback() {
-//            @Override
-//            public void onSuccess() {
-//                List<String> titles = new ArrayList<>();
-//                for(Zaruba ch : current){
-//                    titles.add(ch.getTitle());
-//                }
-//                Log.i("presenter", titles.toString());
-//
-//                view.showChallenges(titles);
+//            for (Zaruba ch : current) {
+//                titles.add(ch.getTitle());
 //            }
-//        });
-        if(storage.getChallenges() != null){
-            List<Zaruba> current = storage.getChallenges();
-            List<String> titles = new ArrayList<>();
+//            Log.i("presenter", titles.toString());
+//
+//        } else {
+//            storage.loadData(new GettingCallback() {
+//                @Override
+//                public void onSuccess() {
+//                    List<Zaruba> current = storage.getChallenges();
+//                    List<String> titles = new ArrayList<>();
+//
+//                    for (Zaruba ch : current) {
+//                        titles.add(ch.getTitle());
+//                    }
+//                    Log.i("presenter", titles.toString());
+//
+//                    view.showChallenges(titles);
+//                }
+//            });
+//        }
+        storage.loadData(new GettingCallback() {
+            @Override
+            public void onSuccess() {
+                List<Zaruba> current = storage.getChallenges();
+                List<String> titles = new ArrayList<>();
 
-            for (Zaruba ch : current) {
-                titles.add(ch.getTitle());
-            }
-            Log.i("presenter", titles.toString());
-
-        } else {
-            storage.loadData(new GettingCallback() {
-                @Override
-                public void onSuccess() {
-                    List<Zaruba> current = storage.getChallenges();
-                    List<String> titles = new ArrayList<>();
-
-                    for (Zaruba ch : current) {
-                        titles.add(ch.getTitle());
-                    }
-                    Log.i("presenter", titles.toString());
-
-                    view.showChallenges(titles);
+                for (Zaruba ch : current) {
+                    titles.add(ch.getTitle());
                 }
-            });
-        }
+                Log.i("presenter", titles.toString());
+
+                view.showChallenges(titles);
+            }
+        });
     }
 
     public void findConditions(int pos){
@@ -84,9 +81,5 @@ public class WelcomePresenter extends BasePresenter {
         storage.updateMyPenalty(ch, cond);
     }
 
-//    public void findChallengeToJoin(String uid){
-//        storage.findChallengeByUid(uid);
-//        view.addNewChallenge();
-//    }
 
 }

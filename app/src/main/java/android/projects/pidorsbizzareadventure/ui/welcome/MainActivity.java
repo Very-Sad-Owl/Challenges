@@ -15,11 +15,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Spinner challenges;
-    Spinner conditions;
-    List<String> titles;
-    int selectedChallenge;
-    int selectedCondition;
     Fragment join;
     Fragment admit;
 

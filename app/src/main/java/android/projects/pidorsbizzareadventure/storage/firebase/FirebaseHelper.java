@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 
 import static android.projects.pidorsbizzareadventure.storage.firebase.FBConstants.USER_UID;
+import static android.projects.pidorsbizzareadventure.storage.firebase.FBConstants.ref;
 import static android.projects.pidorsbizzareadventure.storage.firebase.FBConstants.refChallenges;
 
 public class FirebaseHelper {
@@ -78,6 +79,12 @@ public class FirebaseHelper {
 
         public static void updateChallenge(Zaruba obj){
             refChallenges.child(obj.getUid()).setValue(obj);
+        }
+
+        public static void uploadChallenge(Zaruba obj){
+            String uid = refChallenges.push().getKey();
+            obj.setUid(uid);
+            refChallenges.child(uid).setValue(obj);
         }
     }
 

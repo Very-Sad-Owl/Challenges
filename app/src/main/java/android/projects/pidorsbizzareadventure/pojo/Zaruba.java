@@ -157,4 +157,47 @@ public class Zaruba implements Serializable {
     public int hashCode() {
         return Objects.hash(uid, title, participators, description, reward, punishment, conditions, host);
     }
+
+    public static class Builder {
+        private Zaruba newZaruba;
+
+        public Builder() {
+            newZaruba = new Zaruba();
+        }
+
+        public Builder withTitle(String title){
+            newZaruba.title = title;
+            return this;
+        }
+
+        public Builder withDescription(String description){
+            newZaruba.description = description;
+            return this;
+        }
+
+        public Builder withReward(String reward){
+            newZaruba.reward = reward;
+            return this;
+        }
+
+        public Builder withPunishment(String punishment){
+            newZaruba.punishment = punishment;
+            return this;
+        }
+
+        public Builder withHost(String host){
+            newZaruba.host = host;
+            return this;
+        }
+
+        public Builder withParticipator(Participator newOne){
+            newZaruba.participators.add(newOne);
+            return this;
+        }
+
+        public Zaruba build(){
+            return newZaruba;
+        }
+
+    }
 }

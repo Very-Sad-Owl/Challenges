@@ -34,4 +34,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="join">Join</string>
+    <string name="previous">Previous</string>
+    <string name="create_own">or create your own</string>
+    <string name="join_existing">Join existing challenge</string>
+    <string name="create_new">Create new</string>
 </resources>

@@ -3,6 +3,7 @@ package android.projects.pidorsbizzareadventure.adapters;
 import android.projects.pidorsbizzareadventure.R;
 import android.projects.pidorsbizzareadventure.dialogs.ConditionEditDialog;
 import android.projects.pidorsbizzareadventure.pojo.Condition;
+import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +16,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConditionsAdapter extends RecyclerView.Adapter<ConditionsAdapter.ConditionViewHolder> {
 
     private List<Condition> conditions;
 
-    public ConditionsAdapter(List<Condition> conditions) {
-        this.conditions = conditions;
+    public ConditionsAdapter() {
+        this.conditions = new ArrayList<>();
     }
 
     @NonNull
@@ -45,6 +47,10 @@ public class ConditionsAdapter extends RecyclerView.Adapter<ConditionsAdapter.Co
     @Override
     public int getItemCount() {
         return conditions.size();
+    }
+
+    public void add(Condition data) {
+        conditions.add(data);
     }
 
     class ConditionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

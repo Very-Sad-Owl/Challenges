@@ -138,6 +138,21 @@ public class Admit extends BaseFragment<WelcomePresenter> implements AdmitView{
         challengesAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showError() {
+
+    }
+
 //    @Override
 //    public void addNewChallenge() {
 //        challengesAdapter.notifyDataSetChanged();
