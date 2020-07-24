@@ -38,4 +38,5 @@
     <string name="create_own">or create your own</string>
     <string name="join_existing">Join existing challenge</string>
     <string name="create_new">Create new</string>
+    <string name="paste_challenge_id">Paste challenge ID here</string>
 </resources>

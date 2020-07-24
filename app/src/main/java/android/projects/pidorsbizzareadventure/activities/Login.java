@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.projects.pidorsbizzareadventure.R;
-import android.projects.pidorsbizzareadventure.ui.welcome.MainActivity;
+import android.projects.pidorsbizzareadventure.ui.MainActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;

@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import android.projects.pidorsbizzareadventure.R;
+import android.projects.pidorsbizzareadventure.ui.creation.ChallengeCreation;
 import android.projects.pidorsbizzareadventure.ui.info.ZarubaInfo;
 import android.projects.pidorsbizzareadventure.common.BaseFragment;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
@@ -24,6 +25,7 @@ public class JoinChallenge extends BaseFragment<JoinPresenter> implements JoinVi
 
     private EditText uid;
     private Button join;
+    private Button add;
     private JoinPresenter presenter;
     private ChallengesStorage storage;
 
@@ -45,6 +47,7 @@ public class JoinChallenge extends BaseFragment<JoinPresenter> implements JoinVi
         //presenter = new WelcomePresenter(this);
         join = view.findViewById(R.id.buttonJoinChallenge);
         uid = view.findViewById(R.id.editTextChallengeUIDInput);
+        add = view.findViewById(R.id.buttonCeateNew);
 
         ChallengesStorage storage = new ChallengesStorage();
         presenter = new JoinPresenter(this, storage);
@@ -53,6 +56,14 @@ public class JoinChallenge extends BaseFragment<JoinPresenter> implements JoinVi
             @Override
             public void onClick(View v) {
                 presenter.findChallengeToJoin(uid.getText().toString());
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toCreate = new Intent(getContext(), ChallengeCreation.class);
+                startActivity(toCreate);
             }
         });
     }
