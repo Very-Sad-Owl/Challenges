@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/toolbarEdit"
     android:background="@color/colorPrimary"
+    android:theme="@style/ToolBarStyle"
     android:elevation="4dp">
 
 </androidx.appcompat.widget.Toolbar>

@@ -84,66 +84,66 @@ public class ZarubaInfo extends AppCompatActivity
 //        }
 //    }
 
-    private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            getSupportActionBar().setDisplayShowHomeEnabled(false);
-
-            mode.getMenuInflater().inflate(R.menu.menu_done, menu);
-            mode.setTitle("Editing Mode");
-
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragmentInfo, edit)
-                    .commit();
-
-            return true;
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            return false;
-        }
-
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            switch (item.getItemId()){
-                case R.id.itemDone:
-
-                    Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
-
-                    mode.finish();
-                    return true;
-                case R.id.itemCancel:
-                    Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
-
-                    mode.finish();
-                    return true;
-                case R.id.home:
-                    finish();
-                    return true;
-                default:
-                    return false;
-            }
-        }
-
-
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            actionMode = null;
-
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragmentInfo, info)
-                    .commit();
-        }
-    };
-
-
+//    private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
+//        @Override
+//        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//            getSupportActionBar().setDisplayShowHomeEnabled(false);
+//
+//            mode.getMenuInflater().inflate(R.menu.menu_done, menu);
+//            mode.setTitle("Editing Mode");
+//
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragmentInfo, edit)
+//                    .commit();
+//
+//            return true;
+//        }
+//
+//        @Override
+//        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+//            return false;
+//        }
+//
+//        @Override
+//        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+//            switch (item.getItemId()){
+//                case R.id.itemDone:
+//
+//                    Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+//
+//                    mode.finish();
+//                    return true;
+//                case R.id.itemCancel:
+//                    Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
+//
+//                    mode.finish();
+//                    return true;
+//                case R.id.home:
+//                    finish();
+//                    return true;
+//                default:
+//                    return false;
+//            }
+//        }
+//
+//
+//        @Override
+//        public void onDestroyActionMode(ActionMode mode) {
+//            actionMode = null;
+//
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//            getSupportActionBar().setDisplayShowHomeEnabled(true);
+//
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragmentInfo, info)
+//                    .commit();
+//        }
+//    };
+//
+//
     @Override
     public void enableEditMode() {
         getSupportFragmentManager()

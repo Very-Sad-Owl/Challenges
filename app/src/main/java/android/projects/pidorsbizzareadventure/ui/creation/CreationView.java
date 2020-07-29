@@ -1,5 +1,5 @@
-package android.projects.pidorsbizzareadventure.ui.creation;
-
-public interface CreationView extends StepByStepContract{
-
-}
+//package android.projects.pidorsbizzareadventure.ui.creation;
+//
+//public interface CreationView extends StepByStepContract{
+//
+//}

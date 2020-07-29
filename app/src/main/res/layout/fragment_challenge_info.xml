@@ -15,39 +15,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="24sp" />
+        android:textSize="@dimen/text_large" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/description" />
+        android:text="@string/description"
+        android:textSize="@dimen/text_small"/>
 
     <TextView
         android:id="@+id/textViewInfoDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="@dimen/text_normal"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/winReward" />
+        android:text="@string/winReward"
+        android:textSize="@dimen/text_small"/>
 
     <TextView
         android:id="@+id/textViewReward"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="@dimen/text_normal"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/looseReward" />
+        android:text="@string/looseReward"
+        android:textSize="@dimen/text_small"/>
 
     <TextView
         android:id="@+id/textViewPunishment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="@dimen/text_normal"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/conditions_info_place"/>
 
 </LinearLayout>

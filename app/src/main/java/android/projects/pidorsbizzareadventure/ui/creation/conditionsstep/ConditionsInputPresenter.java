@@ -4,6 +4,7 @@ import android.projects.pidorsbizzareadventure.common.BasePresenter;
 import android.projects.pidorsbizzareadventure.pojo.Condition;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
+import android.util.Log;
 
 public class ConditionsInputPresenter extends BasePresenter {
 
@@ -17,19 +18,19 @@ public class ConditionsInputPresenter extends BasePresenter {
     }
 
     void setCurrentCreation(Zaruba zaruba){
+        Log.i("gott", zaruba.toString());
         currentCreation = zaruba;
         view.setTitle(currentCreation);
     }
 
     void addCondition(CharSequence text, int val){
         Condition condition = new Condition(text.toString(), val);
-        currentCreation.getConditions().add(condition);
-        //storage.addData(currentCreation);
+        currentCreation.addCondition(condition);
+        //currentCreation.getConditions().add(condition);
         view.updateRecycler(condition);
-        //currentCreation.a
     }
 
-    Zaruba getResultChallenge(){
-        return currentCreation;
+    void uploadChallenge(){
+        storage.addData(currentCreation);
     }
 }

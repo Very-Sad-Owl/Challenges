@@ -22,25 +22,43 @@ import java.util.List;
 public class ConditionsAdapter extends RecyclerView.Adapter<ConditionsAdapter.ConditionViewHolder> {
 
     private List<Condition> conditions;
+    private FragmentManager manager;
 
-    public ConditionsAdapter() {
+    public ConditionsAdapter(FragmentManager manager) {
         this.conditions = new ArrayList<>();
+        this.manager = manager;
     }
 
     @NonNull
     @Override
-    public ConditionViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
+    public ConditionViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewTypem) {
         View unit = LayoutInflater.from(parent.getContext()).inflate
                 (R.layout.condition_unit, parent, false);
 
-        return new ConditionViewHolder(unit);
+        return new ConditionViewHolder(unit, manager);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ConditionViewHolder holder, int position) {
-        Condition currentCondition = conditions.get(position);
+    public void onBindViewHolder(@NonNull final ConditionViewHolder holder, int position) {
+        final Condition currentCondition = conditions.get(position);
         holder.condition.setText(currentCondition.getCondition());
         holder.penalty.setText(String.format("%d", currentCondition.getPenalty()));
+
+        holder.dialog = ConditionEditDialog.newInstance(conditions.get(position), new ConditionEditDialog.onConditionEditDialogClickListener() {
+            @Override
+            public void apply(String newText, int newValue) {
+                holder.condition.setText(newText);
+                holder.penalty.setText(String.format("%d", newValue));
+                holder.dialog.dismiss();
+                currentCondition.setCondition(newText);
+                currentCondition.setPenalty(newValue);
+            }
+
+            @Override
+            public void cancel() {
+                holder.dialog.dismiss();
+            }
+        });
 
     }
 
@@ -53,22 +71,29 @@ public class ConditionsAdapter extends RecyclerView.Adapter<ConditionsAdapter.Co
         conditions.add(data);
     }
 
-    class ConditionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public void add(List<Condition> data) {
+        conditions = data;
+    }
+
+    class ConditionViewHolder extends RecyclerView.ViewHolder {
 
         private TextView condition;
         private TextView penalty;
         private LinearLayout layout;
+        private ConditionEditDialog dialog;
 
-        public ConditionViewHolder(@NonNull final View itemView) {
+        public ConditionViewHolder(@NonNull final View itemView, final FragmentManager manager)  {
             super(itemView);
             condition = itemView.findViewById(R.id.conditionUnit);
             penalty = itemView.findViewById(R.id.penaltyUnit);
-            layout = (LinearLayout)itemView.findViewById(R.id.dialogLayout);
-        }
+            layout = itemView.findViewById(R.id.dialogLayout);
 
-        @Override
-        public void onClick(View v) {
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.show(manager, "COND_EDITING");
+                }
+            });
         }
     }
 }

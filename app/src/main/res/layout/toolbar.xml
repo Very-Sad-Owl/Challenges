@@ -5,6 +5,6 @@
     android:id="@+id/toolbarEdit"
     android:background="@color/colorPrimary"
     android:elevation="4dp"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    android:theme="@style/ToolBarStyle">
 
 </androidx.appcompat.widget.Toolbar>

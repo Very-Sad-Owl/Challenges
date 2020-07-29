@@ -13,6 +13,7 @@ import android.projects.pidorsbizzareadventure.pojo.Condition;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
 import android.projects.pidorsbizzareadventure.ui.creation.ChallengeCreation;
+import android.projects.pidorsbizzareadventure.ui.info.editing.ChallengeEditFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,9 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
     ConditionsInputPresenter presenter;
     ChallengesStorage storage;
 
+    private onFinishedCallback callback;
+    private Bundle args;
+
     TextView title;
     NumberPicker picker;
     EditText textCondition;
@@ -46,25 +50,28 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
     Button previous;
 //    FinishCreation finishCreation;
 
+    public static ConditionsInputFragment newInstance(Bundle args) {
+        ConditionsInputFragment fragment = new ConditionsInputFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         storage = new ChallengesStorage();
         presenter = new ConditionsInputPresenter(this, storage);
-//        finishCreation = (FinishCreation) context;
+
+        if(context instanceof onFinishedCallback){
+            callback = (onFinishedCallback) context;
+        } else {
+            throw  new ClassCastException("class must implement onFinishedCallback");
+        }
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getParentFragmentManager().setFragmentResultListener
-                ("INTERMEDIATE_CHALLENGE_CREATION_RESULT", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String key, @NonNull Bundle bundle) {
-                 presenter.setCurrentCreation((Zaruba)bundle.getSerializable("META_INFO"));
-            }
-        });
     }
 
     @Override
@@ -85,6 +92,9 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
         textCondition = view.findViewById(R.id.editTextNewConditions);
         add = view.findViewById(R.id.buttonAddCondition);
 
+        args = getArguments();
+        presenter.setCurrentCreation((Zaruba)args.getSerializable("meta_info_filled_challenge"));
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,8 +106,9 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("cif", presenter.getResultChallenge().toString());
-                ((ChallengeCreation)getActivity()).finishCreation(presenter.getResultChallenge());
+                //((ChallengeCreation)getActivity()).finishCreation(presenter.getResultChallenge());
+                presenter.uploadChallenge();
+                callback.creationFinished();
             }
         });
 
@@ -105,7 +116,8 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((ChallengeCreation)getActivity()).previousStep();
+//                ((ChallengeCreation)getActivity()).previousStep();
+                callback.previousStep();
             }
         });
 
@@ -113,7 +125,7 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
         conditions = view.findViewById(R.id.conditionsList);
         conditions.setLayoutManager(manager);
 
-        adapter = new ConditionsAdapter();
+        adapter = new ConditionsAdapter(getParentFragmentManager());
         conditions.setAdapter(adapter);
     }
 
@@ -148,7 +160,8 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
         adapter.notifyDataSetChanged();
     }
 
-//    public interface FinishCreation{
-//        void onFinish(Zaruba zaruba);
-//    }
+    public interface onFinishedCallback{
+        void creationFinished();
+        void previousStep();
+    }
 }

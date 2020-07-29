@@ -71,4 +71,9 @@ public class ChallengesStorage {
 //        list = challenges;
 //    }
 
+    public boolean isHost(int pos){
+        Log.i("ishost", challenges.get(pos) + " " + USER_UID);
+        return challenges.get(pos).getHost().equals(USER_UID);
+    }
+
 }

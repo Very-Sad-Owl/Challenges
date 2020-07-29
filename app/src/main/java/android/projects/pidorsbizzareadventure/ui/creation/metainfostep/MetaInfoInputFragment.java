@@ -24,11 +24,10 @@ public class MetaInfoInputFragment extends BaseFragment<MetaInfoInputPresenter> 
 
     EditText title;
     EditText description;
-    EditText nick;
     EditText reward;
     EditText punishment;
 
-    //NextStep nextStep;
+    onMetaInfoCreatedCallback callback;
 
     Button next;
     Button previous;
@@ -39,6 +38,12 @@ public class MetaInfoInputFragment extends BaseFragment<MetaInfoInputPresenter> 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+
+        if(context instanceof onMetaInfoCreatedCallback){
+            callback = (onMetaInfoCreatedCallback) context;
+        } else {
+            throw new ClassCastException("class must implement onMetaInfoCreatedCallback");
+        }
         //nextStep = (NextStep) context;
     }
 
@@ -59,7 +64,6 @@ public class MetaInfoInputFragment extends BaseFragment<MetaInfoInputPresenter> 
 
         title = view.findViewById(R.id.editTitle);
         description = view.findViewById(R.id.editDescription);
-        nick = view.findViewById(R.id.editPartis);
         reward = view.findViewById(R.id.editWin);
         punishment = view.findViewById(R.id.editLoose);
 
@@ -67,15 +71,18 @@ public class MetaInfoInputFragment extends BaseFragment<MetaInfoInputPresenter> 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("null", title.getText().toString() + description.getText().toString());
+                //Log.i("null", title.getText().toString() + description.getText().toString());
                // Zaruba zaruba = presenter.metaInfoCreated("title", "desc", "re", "p");
+                Bundle bundle = new Bundle();
                 Zaruba zaruba = presenter.metaInfoCreated(title.getText(), description.getText(),
                         reward.getText(), punishment.getText());
-                Bundle result = new Bundle();
-                result.putSerializable("bundleKey", zaruba);
-                Log.i("too", zaruba.toString());
-                getParentFragmentManager().setFragmentResult("requestKey", result);
-                ((ChallengeCreation)getActivity()).nextStep();
+                bundle.putSerializable("meta_info_filled_challenge", zaruba);
+                callback.metaInfoCreated(bundle);
+//                Bundle result = new Bundle();
+//                result.putSerializable("bundleKey", zaruba);
+//                Log.i("too", zaruba.toString());
+//                getParentFragmentManager().setFragmentResult("requestKey", result);
+//                ((ChallengeCreation)getActivity()).nextStep();
             }
         });
 
@@ -83,7 +90,8 @@ public class MetaInfoInputFragment extends BaseFragment<MetaInfoInputPresenter> 
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((ChallengeCreation)getActivity()).previousStep();
+                //((ChallengeCreation)getActivity()).previousStep();
+                callback.cancel();
             }
         });
 
@@ -99,13 +107,6 @@ public class MetaInfoInputFragment extends BaseFragment<MetaInfoInputPresenter> 
     @Override
     public void onPause() {
         super.onPause();
-//        Zaruba zaruba = presenter.metaInfoCreated(title.getText(), description.getText(),
-//                        reward.getText(), punishment.getText());
-//        Zaruba zaruba = presenter.metaInfoCreated("title", "desc", "re", "p");
-//        Bundle result = new Bundle();
-//        result.putSerializable("bundleKey", zaruba);
-//        Log.i("too", zaruba.toString());
-//        getParentFragmentManager().setFragmentResult("requestKey", result);
     }
 
     @Override
@@ -130,10 +131,15 @@ public class MetaInfoInputFragment extends BaseFragment<MetaInfoInputPresenter> 
 
     @Override
     public void toNextStep(Zaruba zaruba) {
-        Bundle result = new Bundle();
-        result.putSerializable("META_INFO", zaruba);
-        Log.i("too", zaruba.toString());
-        getParentFragmentManager().setFragmentResult("INTERMEDIATE_CHALLENGE_CREATION_RESULT", result);
+//        Bundle result = new Bundle();
+//        result.putSerializable("META_INFO", zaruba);
+//        Log.i("too", zaruba.toString());
+        //getParentFragmentManager().setFragmentResult("INTERMEDIATE_CHALLENGE_CREATION_RESULT", result);
+    }
+
+    public interface onMetaInfoCreatedCallback {
+        void metaInfoCreated(Bundle bundle);
+        void cancel();
     }
 
 }

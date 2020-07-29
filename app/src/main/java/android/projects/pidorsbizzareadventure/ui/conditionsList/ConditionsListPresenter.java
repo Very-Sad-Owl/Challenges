@@ -1,19 +1,16 @@
-package android.projects.pidorsbizzareadventure.ui.info.show;
+package android.projects.pidorsbizzareadventure.ui.conditionsList;
 
 import android.projects.pidorsbizzareadventure.common.BasePresenter;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
 import android.projects.pidorsbizzareadventure.storage.local.GettingCallback;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 
+public class ConditionsListPresenter extends BasePresenter {
 
-public class InfoPresenter extends BasePresenter {
-
-    private InfoView view;
+    private ConditionsListView view;
     private ChallengesStorage storage;
 
-    public InfoPresenter(InfoView view, ChallengesStorage storage) {
+    public ConditionsListPresenter(ConditionsListView view, ChallengesStorage storage){
         this.view = view;
         this.storage = storage;
     }
@@ -23,15 +20,12 @@ public class InfoPresenter extends BasePresenter {
             @Override
             public void onSuccess() {
                 Log.i("storage", storage.getChallenges().toString());
-                view.showMetaInfo(storage.getChallenges().get(pos));
+                view.showData(storage.getChallenges().get(pos).getConditions());
             }
         });
     }
 
-//    public void allowEditing(Menu menu, MenuInflater inflater, int pos){
-//        if (storage.isHost(pos)){
-//            view.inflateMenu(menu, inflater);
-//        }
-//    }
-
+    public void applyChanges(int pos){
+        storage.updateChallenge(storage.getChallenges().get(pos));
+    }
 }

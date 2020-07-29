@@ -1,5 +1,7 @@
 package android.projects.pidorsbizzareadventure.pojo;
 
+import android.projects.pidorsbizzareadventure.storage.firebase.FBConstants;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ public class Zaruba implements Serializable {
         description = "None";
         reward = "no";
         punishment = "no";
-        host = "ded";
+        host = FBConstants.USER_UID;
         participators = new ArrayList<>();
         conditions = new ArrayList<>();
     }
@@ -122,6 +124,13 @@ public class Zaruba implements Serializable {
 
     public void setHost(String host) {
         host = host;
+    }
+
+    public void addCondition(Condition condition){
+        if (this.conditions == null) {
+            this.conditions = new ArrayList<>();
+        }
+        this.conditions.add(condition);
     }
 
     @Override
