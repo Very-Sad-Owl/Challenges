@@ -46,7 +46,7 @@ public class ConditionsListFragment extends BaseFragment<ConditionsListPresenter
         storage = new ChallengesStorage();
         presenter = new ConditionsListPresenter(this, storage);
 
-        adapter = new ConditionsAdapter(getParentFragmentManager());
+
     }
 
     @Override
@@ -67,14 +67,11 @@ public class ConditionsListFragment extends BaseFragment<ConditionsListPresenter
         //recyclerView = view.findViewById()
         conditions = view.findViewById(R.id.recyclerConditionFragment);
 
-
-        conditions.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        conditions.setAdapter(adapter);
-
         Bundle args = getArguments();
         currPos = args.getInt("CURRENT_CHALLENGE_POS");
 
         presenter.getData(currPos);
+
     }
 
     @Override
@@ -101,5 +98,12 @@ public class ConditionsListFragment extends BaseFragment<ConditionsListPresenter
     public void showData(List<Condition> data) {
         adapter.add(data);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void initAdapter() {
+        adapter = new ConditionsAdapter(getParentFragmentManager(), presenter);
+        conditions.setLayoutManager(new LinearLayoutManager(getContext()));
+        conditions.setAdapter(adapter);
     }
 }

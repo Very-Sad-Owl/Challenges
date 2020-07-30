@@ -12,6 +12,7 @@ import android.projects.pidorsbizzareadventure.common.BaseFragment;
 import android.projects.pidorsbizzareadventure.pojo.Condition;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
+import android.projects.pidorsbizzareadventure.ui.conditionsList.ConditionsListFragment;
 import android.projects.pidorsbizzareadventure.ui.creation.ChallengeCreation;
 import android.projects.pidorsbizzareadventure.ui.info.editing.ChallengeEditFragment;
 import android.util.Log;
@@ -43,12 +44,12 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
     NumberPicker picker;
     EditText textCondition;
     Zaruba fromPrev;
-    RecyclerView conditions;
+    //RecyclerView conditions;
     ConditionsAdapter adapter;
     Button add;
     Button finish;
     Button previous;
-//    FinishCreation finishCreation;
+    ConditionsListFragment conditions;
 
     public static ConditionsInputFragment newInstance(Bundle args) {
         ConditionsInputFragment fragment = new ConditionsInputFragment();
@@ -121,12 +122,14 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
             }
         });
 
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        conditions = view.findViewById(R.id.conditionsList);
-        conditions.setLayoutManager(manager);
+        conditions = ConditionsListFragment.newInstance(args);
 
-        adapter = new ConditionsAdapter(getParentFragmentManager());
-        conditions.setAdapter(adapter);
+//        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+//        conditions = view.findViewById(R.id.conditionsList);
+//        conditions.setLayoutManager(manager);
+//
+//        //adapter = new ConditionsAdapter(getParentFragmentManager());
+//        conditions.setAdapter(adapter);
     }
 
     @Override
@@ -156,8 +159,8 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
 
     @Override
     public void updateRecycler(Condition condition) {
-        adapter.add(condition);
-        adapter.notifyDataSetChanged();
+        //adapter.add(condition);
+        //adapter.notifyDataSetChanged();
     }
 
     public interface onFinishedCallback{

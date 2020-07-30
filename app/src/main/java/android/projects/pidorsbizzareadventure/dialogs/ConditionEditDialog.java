@@ -21,14 +21,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class ConditionEditDialog extends BaseDialog<ConditionEditPresenter> implements ConditionEditView {
+//public class ConditionEditDialog extends BaseDialog<ConditionEditPresenter> implements ConditionEditView {
+public class ConditionEditDialog extends AppCompatDialogFragment {
 
     private EditText editedCondition;
     private NumberPicker editedPenalty;
 
     private onConditionEditDialogClickListener callback;
 
-    private ConditionEditPresenter presenter;
+    //private ConditionEditPresenter presenter;
     private ChallengesStorage storage;
 
     private ConditionEditDialog(onConditionEditDialogClickListener callback){
@@ -54,8 +55,8 @@ public class ConditionEditDialog extends BaseDialog<ConditionEditPresenter> impl
 //            throw new ClassCastException("class must implement onConditionEditDialogClickListener");
 //        }
 
-        storage = new ChallengesStorage();
-        presenter = new ConditionEditPresenter(this, storage);
+//        storage = new ChallengesStorage();
+//        presenter = new ConditionEditPresenter(this, storage);
     }
 
     @NonNull
@@ -93,30 +94,30 @@ public class ConditionEditDialog extends BaseDialog<ConditionEditPresenter> impl
         return builder.create();
     }
 
-    @Override
-    protected ConditionEditPresenter getPresenter() {
-        return null;
-    }
-
-    @Override
-    public void showData() {
-
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showError() {
-
-    }
+//    @Override
+//    protected ConditionEditPresenter getPresenter() {
+//        return null;
+//    }
+//
+//    @Override
+//    public void showData() {
+//
+//    }
+//
+//    @Override
+//    public void showLoading() {
+//
+//    }
+//
+//    @Override
+//    public void hideLoading() {
+//
+//    }
+//
+//    @Override
+//    public void showError() {
+//
+//    }
 
     public interface onConditionEditDialogClickListener {
         void apply(String newText, int newValue);
