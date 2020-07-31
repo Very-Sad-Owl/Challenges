@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.projects.pidorsbizzareadventure.R;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
+import android.projects.pidorsbizzareadventure.ui.MainActivity;
 import android.projects.pidorsbizzareadventure.ui.creation.conditionsstep.ConditionsInputFragment;
 import android.projects.pidorsbizzareadventure.ui.creation.metainfostep.MetaInfoInputFragment;
 import android.projects.pidorsbizzareadventure.ui.info.ZarubaInfo;
+import android.projects.pidorsbizzareadventure.ui.welcome.WelcomePageFragment;
 import android.projects.pidorsbizzareadventure.ui.сhallengesList.ZarubasList;
 import android.util.Log;
 import android.view.View;
@@ -45,7 +47,7 @@ public class ChallengeCreation extends AppCompatActivity
 
     @Override
     public void creationFinished() {
-        Intent toInfo = new Intent(this, ZarubasList.class);
+        Intent toInfo = new Intent(this, MainActivity.class);
         startActivity(toInfo);
     }
 

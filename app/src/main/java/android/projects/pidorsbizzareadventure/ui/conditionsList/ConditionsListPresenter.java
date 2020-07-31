@@ -9,36 +9,37 @@ import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
 import android.projects.pidorsbizzareadventure.storage.local.GettingCallback;
 import android.util.Log;
 
+import java.util.List;
+
 public class ConditionsListPresenter extends BasePresenterForAdapter {
 
     private ConditionsListView view;
     private ChallengesStorage storage;
-    private int currPos;
+    private Zaruba currChallenge;
 
     public ConditionsListPresenter(ConditionsListView view, ChallengesStorage storage){
         this.view = view;
         this.storage = storage;
+        currChallenge = new Zaruba();
     }
 
-    public void getData(final int pos) {
-        currPos = pos;
-        storage.loadData(new GettingCallback() {
-            @Override
-            public void onSuccess() {
-                Log.i("storage", storage.getChallenges().toString());
-                view.initAdapter();
-                view.showData(storage.getChallenges().get(pos).getConditions());
-            }
-        });
+    public void getData(Zaruba challenge) {
+//        storage.findChallengeByUid(challenge.getUid(), currChallenge, new GettingCallback() {
+//            @Override
+//            public void onSuccess() {
+//                view.initAdapter();
+//                view.showData(currChallenge.getConditions());
+//            }
+//        });
+        currChallenge = challenge;
+        view.initAdapter();
+        view.showData(currChallenge.getConditions());
     }
 
-    public void applyChanges(int pos){
-        storage.updateChallenge(storage.getChallenges().get(pos));
-    }
 
     @Override
     public void bind(int pos, BaseViewForAdapter view) {
-        Condition conditionCurr = storage.getChallenges().get(currPos).getConditions().get(pos);
+        Condition conditionCurr = currChallenge.getConditions().get(pos);
         view.setConditionText(conditionCurr.getCondition());
         view.setPenalty(conditionCurr.getPenalty());
 
@@ -47,14 +48,22 @@ public class ConditionsListPresenter extends BasePresenterForAdapter {
     @Override
     public int getCount() {
 
-        return storage.getChallenges().get(currPos).getConditions().size();
+        return currChallenge.getConditions().size();
     }
 
     public void applyChanges(String newCond, int newVal, int condPos) {
-        Zaruba currentChallenge = storage.getChallenges().get(currPos);
-        Condition currentCondition =  currentChallenge.getConditions().get(condPos);
+        Condition currentCondition =  currChallenge.getConditions().get(condPos);
         currentCondition.setCondition(newCond);
         currentCondition.setPenalty(newVal);
-        storage.updateChallenge(storage.getChallenges().get(currPos));
+        storage.updateChallenge(currChallenge);
     }
+
+//    public void addData(Condition condition){
+//        currChallenge.getConditions().add(condition);
+//    }
+
+    public List<Condition> getConditions(){
+        return currChallenge.getConditions();
+    }
+
 }

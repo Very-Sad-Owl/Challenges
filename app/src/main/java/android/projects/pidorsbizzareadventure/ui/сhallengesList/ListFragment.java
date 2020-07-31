@@ -62,7 +62,7 @@ public class ListFragment extends BaseFragment<ListFragmentPresenter> implements
     }
 
     @Override
-    protected ListFragmentPresenter getPresenter() {
+    public ListFragmentPresenter getPresenter() {
         return presenter;
     }
 

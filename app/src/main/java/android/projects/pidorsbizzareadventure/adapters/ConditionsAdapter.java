@@ -25,13 +25,11 @@ import java.util.List;
 
 public class ConditionsAdapter extends RecyclerView.Adapter<ConditionsAdapter.ConditionViewHolder> {
 
-    private List<Condition> conditions;
     private FragmentManager manager;
 
     private ConditionsListPresenter presenter;
 
     public ConditionsAdapter(FragmentManager manager, ConditionsListPresenter presenter) {
-        this.conditions = new ArrayList<>();
         this.manager = manager;
         this.presenter = presenter;
     }
@@ -47,7 +45,8 @@ public class ConditionsAdapter extends RecyclerView.Adapter<ConditionsAdapter.Co
 
     @Override
     public void onBindViewHolder(@NonNull final ConditionViewHolder holder, final int position) {
-        holder.dialog = ConditionEditDialog.newInstance(conditions.get(position), new ConditionEditDialog.onConditionEditDialogClickListener() {
+        holder.dialog = ConditionEditDialog.newInstance(presenter.getConditions().get(position),
+                new ConditionEditDialog.onConditionEditDialogClickListener() {
             @Override
             public void apply(String newText, int newValue) {
                 holder.condition.setText(newText);
@@ -71,13 +70,15 @@ public class ConditionsAdapter extends RecyclerView.Adapter<ConditionsAdapter.Co
         return presenter.getCount();
     }
 
-    public void add(Condition data) {
-        conditions.add(data);
-    }
 
-    public void add(List<Condition> data) {
-        conditions = data;
+    public void add(Condition data) {
+        presenter.getConditions().add(data);
+        notifyDataSetChanged();
     }
+//
+//    public void add(List<Condition> data) {
+//        presenter.getConditions() = data;
+//    }
 
     class ConditionViewHolder extends RecyclerView.ViewHolder implements BaseViewForAdapter {
 

@@ -116,7 +116,7 @@ public class Admit extends BaseFragment<WelcomePresenter> implements AdmitView{
     }
 
     @Override
-    protected WelcomePresenter getPresenter() {
+    public WelcomePresenter getPresenter() {
         return presenter;
     }
 

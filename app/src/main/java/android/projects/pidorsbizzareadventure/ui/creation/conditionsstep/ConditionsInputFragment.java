@@ -94,12 +94,22 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
         add = view.findViewById(R.id.buttonAddCondition);
 
         args = getArguments();
-        presenter.setCurrentCreation((Zaruba)args.getSerializable("meta_info_filled_challenge"));
+        presenter.setCurrentCreation((Zaruba)args.getSerializable("CURRENT_CHALLENGE"));
+
+        conditions = ConditionsListFragment.newInstance(args);
+
+        getChildFragmentManager()
+                .beginTransaction()
+                .replace(R.id.condition_list_place_creation, conditions)
+                .commit();
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 presenter.addCondition(textCondition.getText(), picker.getValue());
+                //conditions.getPresenter().
+                conditions.notifyAdapter();
+                textCondition.getText().clear();
             }
         });
 
@@ -122,7 +132,7 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
             }
         });
 
-        conditions = ConditionsListFragment.newInstance(args);
+
 
 //        LinearLayoutManager manager = new LinearLayoutManager(getContext());
 //        conditions = view.findViewById(R.id.conditionsList);
@@ -133,7 +143,7 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
     }
 
     @Override
-    protected ConditionsInputPresenter getPresenter() {
+    public ConditionsInputPresenter getPresenter() {
         return null;
     }
 
@@ -159,8 +169,8 @@ public class ConditionsInputFragment extends BaseFragment<ConditionsInputPresent
 
     @Override
     public void updateRecycler(Condition condition) {
-        //adapter.add(condition);
-        //adapter.notifyDataSetChanged();
+        adapter.add(condition);
+        adapter.notifyDataSetChanged();
     }
 
     public interface onFinishedCallback{

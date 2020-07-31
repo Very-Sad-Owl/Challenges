@@ -144,7 +144,7 @@ public class ChallengeEditFragment extends BaseFragment<ChallengeEditPresenter> 
     }
 
     @Override
-    protected ChallengeEditPresenter getPresenter() {
+    public ChallengeEditPresenter getPresenter() {
         return presenter;
     }
 

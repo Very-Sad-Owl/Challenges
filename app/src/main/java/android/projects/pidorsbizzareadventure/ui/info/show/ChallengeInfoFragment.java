@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.projects.pidorsbizzareadventure.common.BaseFragment;
+import android.projects.pidorsbizzareadventure.common.BasePresenter;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
 import android.projects.pidorsbizzareadventure.ui.conditionsList.ConditionsListFragment;
@@ -107,6 +108,7 @@ public class ChallengeInfoFragment extends BaseFragment<InfoPresenter> implement
                 .replace(R.id.conditions_info_place, fragment)
                 .commit();
 
+
         pos = (Integer)args.get("CURRENT_CHALLENGE_POS");
         presenter.getData(pos);
 
@@ -136,7 +138,7 @@ public class ChallengeInfoFragment extends BaseFragment<InfoPresenter> implement
 
 
     @Override
-    protected InfoPresenter getPresenter() {
+    public InfoPresenter getPresenter() {
         return presenter;
     }
 

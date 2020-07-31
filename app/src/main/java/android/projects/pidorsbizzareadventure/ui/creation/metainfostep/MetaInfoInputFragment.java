@@ -76,7 +76,7 @@ public class MetaInfoInputFragment extends BaseFragment<MetaInfoInputPresenter> 
                 Bundle bundle = new Bundle();
                 Zaruba zaruba = presenter.metaInfoCreated(title.getText(), description.getText(),
                         reward.getText(), punishment.getText());
-                bundle.putSerializable("meta_info_filled_challenge", zaruba);
+                bundle.putSerializable("CURRENT_CHALLENGE", zaruba);
                 callback.metaInfoCreated(bundle);
 //                Bundle result = new Bundle();
 //                result.putSerializable("bundleKey", zaruba);
@@ -100,7 +100,7 @@ public class MetaInfoInputFragment extends BaseFragment<MetaInfoInputPresenter> 
     }
 
     @Override
-    protected MetaInfoInputPresenter getPresenter() {
+    public MetaInfoInputPresenter getPresenter() {
         return presenter;
     }
 

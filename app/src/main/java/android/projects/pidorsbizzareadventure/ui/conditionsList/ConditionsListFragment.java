@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.projects.pidorsbizzareadventure.R;
 import android.projects.pidorsbizzareadventure.adapters.ConditionsAdapter;
 import android.projects.pidorsbizzareadventure.common.BaseFragment;
+import android.projects.pidorsbizzareadventure.common.BaseFragmentWithAdapter;
 import android.projects.pidorsbizzareadventure.pojo.Condition;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
@@ -22,7 +23,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-public class ConditionsListFragment extends BaseFragment<ConditionsListPresenter> implements ConditionsListView {
+public class ConditionsListFragment extends BaseFragmentWithAdapter<ConditionsListPresenter> implements ConditionsListView {
 
     private ConditionsListPresenter presenter;
     private ChallengesStorage storage;
@@ -70,12 +71,12 @@ public class ConditionsListFragment extends BaseFragment<ConditionsListPresenter
         Bundle args = getArguments();
         currPos = args.getInt("CURRENT_CHALLENGE_POS");
 
-        presenter.getData(currPos);
+        presenter.getData((Zaruba)args.getSerializable("CURRENT_CHALLENGE"));
 
     }
 
     @Override
-    protected ConditionsListPresenter getPresenter() {
+    public ConditionsListPresenter getPresenter() {
         return presenter;
     }
 
@@ -96,8 +97,8 @@ public class ConditionsListFragment extends BaseFragment<ConditionsListPresenter
 
     @Override
     public void showData(List<Condition> data) {
-        adapter.add(data);
-        adapter.notifyDataSetChanged();
+//        adapter.add(data);
+//        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -105,5 +106,10 @@ public class ConditionsListFragment extends BaseFragment<ConditionsListPresenter
         adapter = new ConditionsAdapter(getParentFragmentManager(), presenter);
         conditions.setLayoutManager(new LinearLayoutManager(getContext()));
         conditions.setAdapter(adapter);
+    }
+
+    @Override
+    public void notifyAdapter(){
+        adapter.notifyDataSetChanged();
     }
 }

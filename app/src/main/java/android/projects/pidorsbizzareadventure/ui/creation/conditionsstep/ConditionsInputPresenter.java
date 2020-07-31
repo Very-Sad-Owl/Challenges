@@ -27,7 +27,7 @@ public class ConditionsInputPresenter extends BasePresenter {
         Condition condition = new Condition(text.toString(), val);
         currentCreation.addCondition(condition);
         //currentCreation.getConditions().add(condition);
-        view.updateRecycler(condition);
+//        view.updateRecycler(condition);
     }
 
     void uploadChallenge(){

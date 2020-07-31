@@ -75,7 +75,7 @@ public class JoinChallenge extends BaseFragment<JoinPresenter> implements JoinVi
 
 
     @Override
-    protected JoinPresenter getPresenter() {
+    public JoinPresenter getPresenter() {
         return presenter;
     }
 
