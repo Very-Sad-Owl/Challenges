@@ -2,6 +2,7 @@ package android.projects.pidorsbizzareadventure.storage.local;
 
 import android.projects.pidorsbizzareadventure.pojo.Condition;
 import android.projects.pidorsbizzareadventure.pojo.Participator;
+import android.projects.pidorsbizzareadventure.pojo.User;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.firebase.FBConstants;
 import android.projects.pidorsbizzareadventure.storage.firebase.FirebaseHelper;
@@ -17,7 +18,7 @@ public class ChallengesStorage {
     private List<Zaruba> challenges;
 
     public ChallengesStorage() {
-        //challenges = new ArrayList<>();
+        challenges = new ArrayList<>();
     }
 
     public List<Zaruba> getChallenges() {
@@ -29,6 +30,7 @@ public class ChallengesStorage {
         FirebaseHelper.ChallengesInteraction.getAllCurrent(challenges, new ReadingCallback() {
             @Override
             public void onSuccess() {
+                Log.i("localdata", challenges.toString());
                 callback.onSuccess();
             }
         });
@@ -63,17 +65,26 @@ public class ChallengesStorage {
         FirebaseHelper.ChallengesInteraction.updateChallenge(obj);
     }
 
-//    public void getData(List<Zaruba> list, GettingCallback callback){
-//        if(challenges == null){
-//            loadData(callback);
-//        }
-//        Log.i("fromget", challenges.toString());
-//        list = challenges;
-//    }
+    public void updateParticipators(Zaruba obj){
+        FirebaseHelper.ChallengesInteraction.updateParticipators(obj);
+    }
+
 
     public boolean isHost(int pos){
         Log.i("ishost", challenges.get(pos) + " " + USER_UID);
         return challenges.get(pos).getHost().equals(USER_UID);
     }
 
+    public void register(User user){
+        FirebaseHelper.UserInteraction.registerUser(user);
+    }
+
+    public void getUserData(User user, String uid, final GettingCallback callback){
+        FirebaseHelper.UserInteraction.getUser(user, uid, new ReadingCallback() {
+            @Override
+            public void onSuccess() {
+                callback.onSuccess();
+            }
+        });
+    }
 }

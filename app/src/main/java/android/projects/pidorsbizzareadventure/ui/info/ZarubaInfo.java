@@ -23,13 +23,15 @@ import androidx.fragment.app.Fragment;
 import static android.projects.pidorsbizzareadventure.storage.firebase.FBConstants.*;
 
 public class ZarubaInfo extends AppCompatActivity
+        //implements ChallengeInfoFragment.onEditCallback, ChallengeEditFragment.onOptionSelected {
         implements ChallengeInfoFragment.onEditCallback, ChallengeEditFragment.onOptionSelected {
 
     //Toolbar toolbar;
     private ActionMode actionMode = null;
 
-    Fragment info;
-    Fragment edit;
+    ChallengeInfoFragment info;
+    ChallengeEditFragment edit;
+    Zaruba current;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class ZarubaInfo extends AppCompatActivity
         info = ChallengeInfoFragment.newInstance(currentChallenge);
         edit = ChallengeEditFragment.newInstance(currentChallenge);
 
-        info.setArguments(currentChallenge);
+        //info.setArguments(currentChallenge);
 
         //toolbar = findViewById(R.id.editToolBar);
         //setSupportActionBar(toolbar);
@@ -153,25 +155,26 @@ public class ZarubaInfo extends AppCompatActivity
                 .commit();
     }
 
+
     @Override
-    public void apply() {
+    public void apply(Zaruba edited) {
         Toast.makeText(this, "Changes Saved", Toast.LENGTH_SHORT).show();
-        getSupportFragmentManager()
-                .popBackStack();
 //        getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.fragmentInfo, info)
-//                .commit();
+//                .popBackStack();
+        Log.i("edited", edited.toString());
+        info.updateData(edited);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentInfo, info)
+                .commit();
     }
 
     @Override
     public void cancel() {
         getSupportFragmentManager()
-                .popBackStack();
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.fragmentInfo, info)
-//                .commit();
+                .beginTransaction()
+                .replace(R.id.fragmentInfo, info)
+                .commit();
     }
 
 }

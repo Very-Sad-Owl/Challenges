@@ -15,6 +15,14 @@
     <FrameLayout
         android:id="@+id/fragment_join_place"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></FrameLayout>
+        android:layout_height="wrap_content">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frament_sign_out_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
 
 </LinearLayout>

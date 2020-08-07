@@ -8,27 +8,41 @@ import android.util.Log;
 public class ChallengeEditPresenter extends BasePresenter {
 
     private ChallengeEditView view;
+    private Zaruba editedChallenge;
     private Zaruba currentChallenge;
     private ChallengesStorage storage;
 
-    public ChallengeEditPresenter(ChallengeEditView view, ChallengesStorage storage) {
+    public ChallengeEditPresenter(ChallengeEditView view, Zaruba currentChallenge, ChallengesStorage storage) {
         this.view = view;
-        this.currentChallenge = new Zaruba();
+        this.currentChallenge = currentChallenge;
+        this.editedChallenge = new Zaruba(currentChallenge);
         this.storage = storage;
     }
 
-    void setCurrentChallenge(Object chellange){
-        currentChallenge = (Zaruba)chellange;
-        Log.i("ddf", currentChallenge.toString());
-        view.setCurrentMetaInfo(currentChallenge);
+    public void setMetaInfo(){
+        view.setCurrentMetaInfo(editedChallenge);
     }
 
+
     void update(CharSequence title, CharSequence description, CharSequence reward, CharSequence punishment){
-        currentChallenge.setTitle(title.toString());
-        currentChallenge.setDescription(description.toString());
-        currentChallenge.setReward(reward.toString());
-        currentChallenge.setPunishment(punishment.toString());
-        storage.updateChallenge(currentChallenge);
-        Log.i("fbup", currentChallenge.toString());
+        editedChallenge.setTitle(title.toString());
+        editedChallenge.setDescription(description.toString());
+        editedChallenge.setReward(reward.toString());
+        editedChallenge.setPunishment(punishment.toString());
+        //storage.updateChallenge(editedChallenge);
+        view.setCurrentMetaInfo(editedChallenge);
+        Log.i("fbup", editedChallenge.toString());
+    }
+
+    void confirm(){
+        storage.updateChallenge(editedChallenge);
+    }
+
+    public Zaruba getEditedChallenge() {
+        return editedChallenge;
+    }
+
+    public Zaruba getCurrentChallenge() {
+        return currentChallenge;
     }
 }

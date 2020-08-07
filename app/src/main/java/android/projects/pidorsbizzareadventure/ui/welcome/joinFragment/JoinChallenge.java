@@ -69,12 +69,6 @@ public class JoinChallenge extends BaseFragment<JoinPresenter> implements JoinVi
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-
-    @Override
     public JoinPresenter getPresenter() {
         return presenter;
     }

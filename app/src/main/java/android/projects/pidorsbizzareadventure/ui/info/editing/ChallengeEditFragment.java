@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentResultListener;
 import android.projects.pidorsbizzareadventure.common.BaseFragment;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
+import android.projects.pidorsbizzareadventure.ui.conditionsList.ConditionsListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,19 +40,13 @@ public class ChallengeEditFragment extends BaseFragment<ChallengeEditPresenter> 
 
     private Toolbar toolbar;
 
+    ConditionsListFragment conditions;
+
     private onOptionSelected callback;
 
     private ChallengeEditPresenter presenter;
     private ChallengesStorage storage;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public ChallengeEditFragment() {
         // Required empty public constructor
@@ -68,8 +63,12 @@ public class ChallengeEditFragment extends BaseFragment<ChallengeEditPresenter> 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+
+        Bundle args = getArguments();
         storage = new ChallengesStorage();
-        presenter = new ChallengeEditPresenter(this, storage);
+        presenter = new ChallengeEditPresenter(this, (Zaruba)args.get("CURRENT_CHALLENGE"), storage);
+
+        conditions = ConditionsListFragment.newInstance(args);
 
         if(context instanceof onOptionSelected){
             callback = (onOptionSelected) context;
@@ -81,12 +80,6 @@ public class ChallengeEditFragment extends BaseFragment<ChallengeEditPresenter> 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setHasOptionsMenu(true);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
     }
 
     @Override
@@ -105,15 +98,15 @@ public class ChallengeEditFragment extends BaseFragment<ChallengeEditPresenter> 
         rewardEdit = view.findViewById(R.id.editTextReward);
         punishmentEdit = view.findViewById(R.id.editTextPunishment);
 
-        Bundle args = getArguments();
-        presenter.setCurrentChallenge(args.get("CURRENT_CHALLENGE"));
-
         toolbar = view.findViewById(R.id.editToolBar);
-        //((AppCompatActivity)getActivity()).getSupportActionBar().hide();
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        Log.i("tool", ((AppCompatActivity)getActivity()).getSupportActionBar() != null ? "true" : "false");
-//        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        getChildFragmentManager()
+                .beginTransaction()
+                .replace(R.id.conditions_list_place, conditions)
+                .commit();
+
+        presenter.setMetaInfo();
     }
 
     @Override
@@ -128,7 +121,8 @@ public class ChallengeEditFragment extends BaseFragment<ChallengeEditPresenter> 
                 Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
                 presenter.update(titleEdit.getText(), descriptionEdit.getText(), rewardEdit.getText(),
                         punishmentEdit.getText());
-                callback.apply();
+                presenter.confirm();
+                callback.apply(presenter.getEditedChallenge());
                 return true;
             case R.id.itemCancel:
                 Toast.makeText(getContext(), "Cancel", Toast.LENGTH_SHORT).show();
@@ -172,9 +166,10 @@ public class ChallengeEditFragment extends BaseFragment<ChallengeEditPresenter> 
     }
 
     public interface onOptionSelected{
-        void apply();
+        void apply(Zaruba edited);
         void cancel();
     }
+
 }
 
 

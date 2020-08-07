@@ -1,4 +1,4 @@
-package android.projects.pidorsbizzareadventure.ui.conditionsList;
+package android.projects.pidorsbizzareadventure.ui.scoreList;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.projects.pidorsbizzareadventure.R;
 import android.projects.pidorsbizzareadventure.adapters.ConditionsAdapter;
+import android.projects.pidorsbizzareadventure.adapters.ScoreAdapter;
 import android.projects.pidorsbizzareadventure.common.BaseFragment;
 import android.projects.pidorsbizzareadventure.common.BaseFragmentWithAdapter;
 import android.projects.pidorsbizzareadventure.pojo.Condition;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
+import android.projects.pidorsbizzareadventure.ui.scoreList.ScoreListPresenter;
+import android.projects.pidorsbizzareadventure.ui.scoreList.ScoreListView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,34 +26,29 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-public class ConditionsListFragment extends BaseFragmentWithAdapter<ConditionsListPresenter> implements ConditionsListView {
+public class ScoreListFragment extends BaseFragmentWithAdapter<ScoreListPresenter> implements ScoreListView {
 
-    private ConditionsListPresenter presenter;
+    private ScoreListPresenter presenter;
     private ChallengesStorage storage;
-    private ConditionsAdapter adapter;
+    private ScoreAdapter adapter;
 
     private RecyclerView conditions;
 
     int currPos;
 
-    public static ConditionsListFragment newInstance(Bundle args){
-        ConditionsListFragment fragment = new ConditionsListFragment();
+    public static ScoreListFragment newInstance(Bundle args){
+        ScoreListFragment fragment = new ScoreListFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public ConditionsListFragment(){}
+    private ScoreListFragment(){}
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-
-        Bundle args = getArguments();
-
         storage = new ChallengesStorage();
-        presenter = new ConditionsListPresenter(this, new Zaruba((Zaruba)args.getSerializable("CURRENT_CHALLENGE")));
-
-
+        presenter = new ScoreListPresenter(this, storage);
     }
 
     @Override
@@ -70,15 +68,16 @@ public class ConditionsListFragment extends BaseFragmentWithAdapter<ConditionsLi
         super.onViewCreated(view, savedInstanceState);
         //recyclerView = view.findViewById()
         conditions = view.findViewById(R.id.recyclerConditionFragment);
-        presenter.attachAdapter();
 
+        Bundle args = getArguments();
+        currPos = args.getInt("CURRENT_CHALLENGE_POS");
 
-        //presenter.getData((Zaruba)args.getSerializable("CURRENT_CHALLENGE"));
+        presenter.getData((Zaruba)args.getSerializable("CURRENT_CHALLENGE"));
 
     }
 
     @Override
-    public ConditionsListPresenter getPresenter() {
+    public ScoreListPresenter getPresenter() {
         return presenter;
     }
 
@@ -97,15 +96,10 @@ public class ConditionsListFragment extends BaseFragmentWithAdapter<ConditionsLi
 
     }
 
-    @Override
-    public void showData(List<Condition> data) {
-//        adapter.add(data);
-//        adapter.notifyDataSetChanged();
-    }
 
     @Override
     public void initAdapter() {
-        adapter = new ConditionsAdapter(getParentFragmentManager(), presenter);
+        adapter = new ScoreAdapter(presenter);
         conditions.setLayoutManager(new LinearLayoutManager(getContext()));
         conditions.setAdapter(adapter);
     }

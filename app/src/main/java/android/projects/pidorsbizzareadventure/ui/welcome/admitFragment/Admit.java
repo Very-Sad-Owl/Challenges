@@ -19,12 +19,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Admit extends BaseFragment<WelcomePresenter> implements AdmitView{
 
+    private TextView hello;
     private Spinner challenges;
     private Spinner conditions;
     private ArrayAdapter<String> challengesAdapter;
@@ -79,6 +81,9 @@ public class Admit extends BaseFragment<WelcomePresenter> implements AdmitView{
 
         presenter = new WelcomePresenter(this, storage);
         presenter.getChallenges();
+        presenter.getUserName();
+
+        hello = view.findViewById(R.id.textViewHelloUser);
 
         challenges.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent,
@@ -108,14 +113,6 @@ public class Admit extends BaseFragment<WelcomePresenter> implements AdmitView{
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.i("plsh", "onActivityCreated");
-//        challengesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        challenges.setAdapter(challengesAdapter);
-    }
-
-    @Override
     public WelcomePresenter getPresenter() {
         return presenter;
     }
@@ -136,6 +133,11 @@ public class Admit extends BaseFragment<WelcomePresenter> implements AdmitView{
         titles.addAll(list);
         Log.i("view", titles.toString());
         challengesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showUseName(String name) {
+        hello.setText(String.format(getResources().getString(R.string.hello_user), name));
     }
 
     @Override

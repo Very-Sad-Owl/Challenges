@@ -9,4 +9,5 @@ public interface AdmitView extends BaseView {
 
     void showConditions(List<String> list);
     void showChallenges(List<String> list);
+    void showUseName(String name);
 }

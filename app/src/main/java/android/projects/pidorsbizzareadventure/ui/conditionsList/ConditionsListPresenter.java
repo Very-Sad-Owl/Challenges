@@ -14,24 +14,20 @@ import java.util.List;
 public class ConditionsListPresenter extends BasePresenterForAdapter {
 
     private ConditionsListView view;
-    private ChallengesStorage storage;
+  //  private ChallengesStorage storage;
     private Zaruba currChallenge;
 
-    public ConditionsListPresenter(ConditionsListView view, ChallengesStorage storage){
+   // public ConditionsListPresenter(ConditionsListView view, ChallengesStorage storage){
+    public ConditionsListPresenter(ConditionsListView view, Zaruba currChallenge){
         this.view = view;
-        this.storage = storage;
-        currChallenge = new Zaruba();
+      //  this.storage = storage;
+//        currChallenge = new Zaruba();
+        this.currChallenge = currChallenge;
     }
 
-    public void getData(Zaruba challenge) {
-//        storage.findChallengeByUid(challenge.getUid(), currChallenge, new GettingCallback() {
-//            @Override
-//            public void onSuccess() {
-//                view.initAdapter();
-//                view.showData(currChallenge.getConditions());
-//            }
-//        });
-        currChallenge = challenge;
+    public void attachAdapter() {
+
+        //currChallenge = challenge;
         view.initAdapter();
         view.showData(currChallenge.getConditions());
     }
@@ -55,7 +51,7 @@ public class ConditionsListPresenter extends BasePresenterForAdapter {
         Condition currentCondition =  currChallenge.getConditions().get(condPos);
         currentCondition.setCondition(newCond);
         currentCondition.setPenalty(newVal);
-        storage.updateChallenge(currChallenge);
+//        storage.updateChallenge(currChallenge);
     }
 
 //    public void addData(Condition condition){

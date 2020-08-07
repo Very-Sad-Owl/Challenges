@@ -1,10 +1,11 @@
 package android.projects.pidorsbizzareadventure.ui.welcome.joinFragment;
 
 import android.projects.pidorsbizzareadventure.common.BasePresenter;
+import android.projects.pidorsbizzareadventure.pojo.Participator;
 import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
 import android.projects.pidorsbizzareadventure.storage.local.GettingCallback;
-import android.projects.pidorsbizzareadventure.ui.welcome.admitFragment.AdmitView;
+import static android.projects.pidorsbizzareadventure.storage.firebase.FBConstants.*;
 
 public class JoinPresenter extends BasePresenter {
 
@@ -21,9 +22,11 @@ public class JoinPresenter extends BasePresenter {
         storage.findChallengeByUid(uid, found, new GettingCallback() {
                 @Override
                 public void onSuccess() {
-                    view.addNewChallenge(found);
+                    found.getParticipators().add(new Participator(CURRENT_USER.getNickname(), CURRENT_USER.getUid()));
+                    //storage.updateChallenge(found);
+                    //storage.updateParticipators(found);
+                    //view.addNewChallenge(found);
                 }
             });
-
     }
 }

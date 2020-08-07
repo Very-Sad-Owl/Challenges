@@ -27,6 +27,18 @@ public class ListFragment extends BaseFragment<ListFragmentPresenter> implements
     private ListFragmentPresenter presenter;
     private ChallengesStorage storage;
 
+    ListFragment(){
+        Log.i("placeholder", "constructor");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("placeholder", "resume");
+        //presenter.getData();
+        adapter.notifyDataSetChanged();
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -34,18 +46,22 @@ public class ListFragment extends BaseFragment<ListFragmentPresenter> implements
         presenter = new ListFragmentPresenter(this, storage);
 
         adapter = new ChallengeListAdapter();
+        Log.i("placeholder", "onAttach");
 
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("placeholder", "onCreate");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.i("placeholder", "onCreateView");
+        presenter.loadData();
         return inflater.inflate(R.layout.fragment_list, container, false);
     }
 
@@ -53,12 +69,11 @@ public class ListFragment extends BaseFragment<ListFragmentPresenter> implements
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         challenges = view.findViewById(R.id.challengeList);
-
+        Log.i("placeholder", "onViewCreated");
 
         challenges.setLayoutManager(new LinearLayoutManager(view.getContext()));
         challenges.setAdapter(adapter);
 
-        presenter.getData();
     }
 
     @Override

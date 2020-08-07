@@ -25,12 +25,8 @@ public class MetaInfoInputPresenter extends BasePresenter {
                 .withHost(USER_UID)
                 .withReward(reward.toString())
                 .withPunishment(punishment.toString())
-                .withParticipator(new Participator("host", USER_UID))
+                .withParticipator(new Participator(CURRENT_USER.getNickname(), USER_UID))
                 .build();
-    }
-
-    Zaruba getZaruba(){
-        return storage;
     }
 
 }

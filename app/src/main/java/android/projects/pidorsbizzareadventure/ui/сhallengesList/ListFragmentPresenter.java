@@ -19,7 +19,7 @@ public class ListFragmentPresenter extends BasePresenter {
         this.storage = storage;
     }
 
-    public void getData() {
+    public void loadData() {
         storage.loadData(new GettingCallback() {
             @Override
             public void onSuccess() {
@@ -27,5 +27,9 @@ public class ListFragmentPresenter extends BasePresenter {
                 view.showData(storage.getChallenges());
             }
         });
+    }
+
+    public void getData(){
+        view.showData(storage.getChallenges());
     }
 }

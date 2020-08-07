@@ -39,4 +39,9 @@
     <string name="join_existing">Join existing challenge</string>
     <string name="create_new">Create new</string>
     <string name="paste_challenge_id">Paste challenge ID here</string>
+    <string name="nickname">Your nickname</string>
+    <string name="sign_in_error">Invalid email or password. Try again.</string>
+    <string name="or">or</string>
+    <string name="hello_user">Hello, %s!</string>
+    <string name="sign_out">Sign Out</string>
 </resources>

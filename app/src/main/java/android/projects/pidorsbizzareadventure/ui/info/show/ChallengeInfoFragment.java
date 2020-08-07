@@ -15,6 +15,7 @@ import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 import android.projects.pidorsbizzareadventure.storage.local.ChallengesStorage;
 import android.projects.pidorsbizzareadventure.ui.conditionsList.ConditionsListFragment;
 import android.projects.pidorsbizzareadventure.ui.info.ZarubaInfo;
+import android.projects.pidorsbizzareadventure.ui.scoreList.ScoreListFragment;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -39,7 +40,7 @@ public class ChallengeInfoFragment extends BaseFragment<InfoPresenter> implement
     private TextView reward;
     private TextView punishment;
 
-    ConditionsListFragment fragment;
+    ScoreListFragment score;
 
     private Toolbar toolbar;
     private onEditCallback callback;
@@ -62,9 +63,12 @@ public class ChallengeInfoFragment extends BaseFragment<InfoPresenter> implement
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+        Bundle args = getArguments();
         Log.i("showmeta", "onAttach");
         storage =  new ChallengesStorage();
-        presenter = new InfoPresenter(this, storage);
+        presenter = new InfoPresenter(this, (Zaruba) args.getSerializable("CURRENT_CHALLENGE"));
+
+        score = ScoreListFragment.newInstance(args);
 
         if(context instanceof ZarubaInfo){
             callback = (onEditCallback) context;
@@ -99,22 +103,16 @@ public class ChallengeInfoFragment extends BaseFragment<InfoPresenter> implement
         reward = view.findViewById(R.id.textViewReward);
         punishment = view.findViewById(R.id.textViewPunishment);
 
-        Bundle args = getArguments();
-
-        fragment = ConditionsListFragment.newInstance(args);
-
         getChildFragmentManager()
                 .beginTransaction()
-                .replace(R.id.conditions_info_place, fragment)
+                .replace(R.id.conditions_info_place, score)
                 .commit();
-
-
-        pos = (Integer)args.get("CURRENT_CHALLENGE_POS");
-        presenter.getData(pos);
 
         toolbar = view.findViewById(R.id.editToolBar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        presenter.showMetaInfo();
     }
 
 
@@ -171,7 +169,12 @@ public class ChallengeInfoFragment extends BaseFragment<InfoPresenter> implement
 
     }
 
+    public void updateData(Zaruba challenge){
+        presenter.setCurrentChallenge(challenge);
+    }
+
     public interface onEditCallback {
         void enableEditMode();
     }
+
 }
