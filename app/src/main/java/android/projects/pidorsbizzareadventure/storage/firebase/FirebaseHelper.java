@@ -119,7 +119,7 @@ public class FirebaseHelper {
 
                 }
             };
-            reference.addValueEventListener(listener);
+            reference.addListenerForSingleValueEvent(listener);
 
         }
 

@@ -5,5 +5,5 @@ import android.projects.pidorsbizzareadventure.pojo.Zaruba;
 
 public interface JoinView extends BaseView {
 
-    void addNewChallenge(Zaruba zaruba);
+    void clearInput();
 }

@@ -24,7 +24,7 @@ public class JoinPresenter extends BasePresenter {
                 public void onSuccess() {
                     found.getParticipators().add(new Participator(CURRENT_USER.getNickname(), CURRENT_USER.getUid()));
                     //storage.updateChallenge(found);
-                    //storage.updateParticipators(found);
+                    storage.updateParticipators(found);
                     //view.addNewChallenge(found);
                 }
             });

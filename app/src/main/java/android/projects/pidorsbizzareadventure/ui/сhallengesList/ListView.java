@@ -8,5 +8,5 @@ import java.util.List;
 public interface ListView extends BaseView {
 
     void showData(List<Zaruba> data);
-    void openInfo(Zaruba zaruba);
+    void initAdapter(List<Zaruba> data);
 }

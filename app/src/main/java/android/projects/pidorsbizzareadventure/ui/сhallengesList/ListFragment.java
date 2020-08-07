@@ -44,8 +44,6 @@ public class ListFragment extends BaseFragment<ListFragmentPresenter> implements
         super.onAttach(context);
         storage = new ChallengesStorage();
         presenter = new ListFragmentPresenter(this, storage);
-
-        adapter = new ChallengeListAdapter();
         Log.i("placeholder", "onAttach");
 
     }
@@ -61,6 +59,7 @@ public class ListFragment extends BaseFragment<ListFragmentPresenter> implements
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Log.i("placeholder", "onCreateView");
+        //presenter.getData();
         presenter.loadData();
         return inflater.inflate(R.layout.fragment_list, container, false);
     }
@@ -71,8 +70,8 @@ public class ListFragment extends BaseFragment<ListFragmentPresenter> implements
         challenges = view.findViewById(R.id.challengeList);
         Log.i("placeholder", "onViewCreated");
 
-        challenges.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        challenges.setAdapter(adapter);
+//        challenges.setLayoutManager(new LinearLayoutManager(view.getContext()));
+//        challenges.setAdapter(adapter);
 
     }
 
@@ -99,12 +98,14 @@ public class ListFragment extends BaseFragment<ListFragmentPresenter> implements
     @Override
     public void showData(List<Zaruba> data) {
         Log.i("chlist", data.toString());
-        adapter.add(data);
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void openInfo(Zaruba zaruba) {
-
+    public void initAdapter(List<Zaruba> data) {
+        adapter = new ChallengeListAdapter(data);
+        challenges.setLayoutManager(new LinearLayoutManager(getContext()));
+        challenges.setAdapter(adapter);
     }
+
 }

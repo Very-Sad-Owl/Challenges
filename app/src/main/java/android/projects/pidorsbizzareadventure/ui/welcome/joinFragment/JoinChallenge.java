@@ -74,11 +74,8 @@ public class JoinChallenge extends BaseFragment<JoinPresenter> implements JoinVi
     }
 
     @Override
-    public void addNewChallenge(Zaruba zaruba) {
-        Log.i("joinfr", zaruba.toString());
-        Intent openInfo = new Intent(getContext(), ZarubaInfo.class);
-        openInfo.putExtra("currentChallenge", zaruba);
-        startActivity(openInfo);
+    public void clearInput(){
+        uid.getText().clear();
     }
 
     @Override

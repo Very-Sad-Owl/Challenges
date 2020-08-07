@@ -20,9 +20,9 @@ import java.util.List;
 public class ChallengeListAdapter extends RecyclerView.Adapter<ChallengeListAdapter.ViewHolder> {
     private List<Zaruba> challenges;
 
-    ChallengeListAdapter(){
-        challenges = new ArrayList<>();
-       // this.challenges = challenges;
+    ChallengeListAdapter(List<Zaruba> challenges){
+        //challenges = new ArrayList<>();
+        this.challenges = challenges;
     }
 
     @NonNull
@@ -45,13 +45,13 @@ public class ChallengeListAdapter extends RecyclerView.Adapter<ChallengeListAdap
         return challenges.size();
     }
 
-    public void add(Zaruba zaruba){
-        challenges.add(zaruba);
-    }
-
-    public void add(List<Zaruba> list){
-        challenges.addAll(list);
-    }
+//    public void add(Zaruba zaruba){
+//        challenges.add(zaruba);
+//    }
+//
+//    public void add(List<Zaruba> list){
+//        challenges.addAll(list);
+//    }
 
     static class ViewHolder extends RecyclerView.ViewHolder  {
 

@@ -24,12 +24,10 @@ public class ListFragmentPresenter extends BasePresenter {
             @Override
             public void onSuccess() {
                 Log.i("storage", storage.getChallenges().toString());
-                view.showData(storage.getChallenges());
+                //view.showData(storage.getChallenges());
+                view.initAdapter(storage.getChallenges());
             }
         });
     }
 
-    public void getData(){
-        view.showData(storage.getChallenges());
-    }
 }

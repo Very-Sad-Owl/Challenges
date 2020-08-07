@@ -29,7 +29,7 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitsViewHol
     public UnitsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate
                 (R.layout.activity_challenge_note_unit, parent, false);
-        return new UnitsViewHolder(view, list);
+        return new UnitsViewHolder(view);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitsViewHol
         private TextView title;
         private TextView description;
 
-        public UnitsViewHolder(@NonNull final View itemView, final List<Zaruba> list) {
+        public UnitsViewHolder(@NonNull final View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textViewShortTitle);
             description = itemView.findViewById(R.id.textViewShortDescription);
@@ -63,7 +63,7 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitsViewHol
                     Log.i("click", "clicked");
                     int position = getAdapterPosition();
                     Intent next = new Intent(itemView.getContext(), ZarubaInfo.class);
-                    next.putExtra("chosen", list.get(position));
+                    next.putExtra("pos", position);
                     v.getContext().startActivity(next);
                 }
             });
